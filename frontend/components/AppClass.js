@@ -43,18 +43,26 @@ export default class AppClass extends React.Component {
 
   reset = () => {
     // Use this helper to reset all states to their initial values.
-    this.setState({...this.state, initialState});
+    this.setState({...this.state, ...initialState});
   }
 
   getNextIndex = (direction) => {
     // This helper takes a direction ("left", "up", etc) and calculates what the next index
     // of the "B" would be. If the move is impossible because we are at the edge of the grid,
     // this helper should return the current index unchanged.
+    const directionIndex = {"left": -1, "right": 1, "up": -3, "down": 3}
+    const newIndex = this.state.index + directionIndex[direction]
+    if(newIndex >= 0 && newIndex <= 8){
+      return(this.setState({...this.state, index: newIndex}))
+    }return
   }
 
   move = (evt) => {
     // This event handler can use the helper above to obtain a new index for the "B",
     // and change any states accordingly.
+    evt.preventDefault()
+    this.getNextIndex(evt.target.id)
+
   }
 
   onChange = (evt) => {
@@ -87,11 +95,11 @@ export default class AppClass extends React.Component {
           <h3 id="message"></h3>
         </div>
         <div id="keypad">
-          <button id="left">LEFT</button>
-          <button id="up">UP</button>
-          <button id="right">RIGHT</button>
-          <button id="down">DOWN</button>
-          <button id="reset">reset</button>
+          <button onClick={this.move}id="left">LEFT</button>
+          <button onClick={this.move}id="up">UP</button>
+          <button onClick={this.move}id="right">RIGHT</button>
+          <button onClick={this.move}id="down">DOWN</button>
+          <button onClick={this.reset}id="reset">reset</button>
         </div>
         <form>
           <input id="email" type="email" placeholder="type email"></input>
