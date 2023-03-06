@@ -26,6 +26,13 @@ export default class AppClass extends React.Component {
   getXY = () => {
     // It it not necessary to have a state to track the coordinates.
     // It's enough to know what index the "B" is at, to be able to calculate them.
+    const coordArray = [
+      "(1, 1)", "(2, 1)", "(3, 1)",
+      "(1, 2)", "(2, 2)", "(3, 2)",
+      "(1, 3)", "(2, 3)", "(3, 3)",
+    ]
+    const xy = coordArray[this.state.index]
+    return xy
   }
 
   getXYMessage = () => {
@@ -64,14 +71,14 @@ export default class AppClass extends React.Component {
     return (
       <div id="wrapper" className={className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
+          <h3 id="coordinates">{this.getXY()}</h3>
           <h3 id="steps">You moved 0 times</h3>
         </div>
         <div id="grid">
           {
             [0, 1, 2, 3, 4, 5, 6, 7, 8].map(idx => (
               <div key={idx} className={`square${idx === index ? ' active' : ''}`}>
-                {idx === 4 ? 'B' : null}
+                {idx === index ? 'B' : null}
               </div>
             ))
           }
