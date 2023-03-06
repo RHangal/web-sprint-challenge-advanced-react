@@ -16,6 +16,12 @@ const initialState = {
 export default class AppClass extends React.Component {
   // THE FOLLOWING HELPERS ARE JUST RECOMMENDATIONS.
   // You can delete them and build your own logic from scratch.
+  state = {
+    message: initialMessage,
+    email: initialEmail,
+    steps: initialSteps,
+    index: initialIndex,
+  }
 
   getXY = () => {
     // It it not necessary to have a state to track the coordinates.
@@ -30,6 +36,7 @@ export default class AppClass extends React.Component {
 
   reset = () => {
     // Use this helper to reset all states to their initial values.
+    this.setState({...this.state, initialState});
   }
 
   getNextIndex = (direction) => {
@@ -53,6 +60,7 @@ export default class AppClass extends React.Component {
 
   render() {
     const { className } = this.props
+    const {message, email, steps, index} = this.state
     return (
       <div id="wrapper" className={className}>
         <div className="info">
@@ -62,7 +70,7 @@ export default class AppClass extends React.Component {
         <div id="grid">
           {
             [0, 1, 2, 3, 4, 5, 6, 7, 8].map(idx => (
-              <div key={idx} className={`square${idx === 4 ? ' active' : ''}`}>
+              <div key={idx} className={`square${idx === index ? ' active' : ''}`}>
                 {idx === 4 ? 'B' : null}
               </div>
             ))
