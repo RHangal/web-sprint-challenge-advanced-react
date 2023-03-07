@@ -18,6 +18,13 @@ export default function AppFunctional(props) {
   function getXY() {
     // It it not necessary to have a state to track the coordinates.
     // It's enough to know what index the "B" is at, to be able to calculate them.
+    const coordArray = [
+      "(1, 1)", "(2, 1)", "(3, 1)",
+      "(1, 2)", "(2, 2)", "(3, 2)",
+      "(1, 3)", "(2, 3)", "(3, 3)",
+    ]
+    const xy = coordArray[index]
+    return xy
   }
 
   function getXYMessage() {
@@ -52,7 +59,7 @@ export default function AppFunctional(props) {
   return (
     <div id="wrapper" className={props.className}>
       <div className="info">
-        <h3 id="coordinates">Coordinates (2, 2)</h3>
+        <h3 id="coordinates">Coordinates {getXY()}</h3>
         <h3 id="steps">You moved 0 times</h3>
       </div>
       <div id="grid">
