@@ -9,7 +9,7 @@ const initialMessage = ''
 const initialEmail = ''
 const initialSteps = 0
 const initialIndex = 4 // the index the "B" is at
-let newStepValue = 0
+
 
 export default function AppFunctional(props) {
   // THE FOLLOWING HELPERS ARE JUST RECOMMENDATIONS.
@@ -43,7 +43,7 @@ export default function AppFunctional(props) {
     setEmail(initialEmail);
     setSteps(initialSteps);
     setIndex(initialIndex);
-    newStepValue = 0;
+   
   }
 
   function getNextIndex(direction) {
@@ -59,8 +59,8 @@ export default function AppFunctional(props) {
       return(setMessage(`You can't go ${direction}`))
     }
     else if(newIndex >= 0 && newIndex <= 8){
-      newStepValue++
-      return( setIndex(newIndex), setSteps(newStepValue))
+      
+      return( setIndex(newIndex), setSteps(steps+1))
     }
     return(setMessage(`You can't go ${direction}`))
   }

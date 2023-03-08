@@ -8,7 +8,6 @@ const initialMessage = ''
 const initialEmail = ''
 const initialSteps = 0
 const initialIndex = 4 // the index the "B" is at
-let newStepValue = 0
 
 const initialState = {
   message: initialMessage,
@@ -48,16 +47,17 @@ export default class AppClass extends React.Component {
   reset = () => {
     // Use this helper to reset all states to their initial values.
     this.setState({...this.state, ...initialState});
-    newStepValue = 0
+    
   }
 
   getNextIndex = (direction) => {
     // This helper takes a direction ("left", "up", etc) and calculates what the next index
     // of the "B" would be. If the move is impossible because we are at the edge of the grid,
     // this helper should return the current index unchanged.
-    const {index} = this.state
+    const {index, steps} = this.state
     const directionIndex = {"left": -1, "right": 1, "up": -3, "down": 3}
     const newIndex = index + directionIndex[direction]
+    
     if((index===2 || index===5) && direction==="right"){
       return(this.setState({...this.state, message: `You can't go ${direction}`}))
     }
@@ -65,8 +65,8 @@ export default class AppClass extends React.Component {
       return(this.setState({...this.state, message: `You can't go ${direction}`}))
     }
     else if(newIndex >= 0 && newIndex <= 8){
-      newStepValue++
-      return(this.setState({...this.state, index: newIndex, steps: newStepValue}))
+     
+      return(this.setState({...this.state, index: newIndex, steps: steps+1}))
     }
     return(this.setState({...this.state, message: `You can't go ${direction}`}))
   }
