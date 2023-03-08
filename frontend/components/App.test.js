@@ -19,7 +19,9 @@ const updateStatelessSelectors = document => {
   submit = document.querySelector('#submit')
 }
 
-const email = document.querySelector('#email')
+const updateStatefulSelectors = document => {
+  email = document.querySelector('#email')
+}
 
 test('Does functional component render movement buttons to screen', async() =>{
   render(<AppFunctional/>)
